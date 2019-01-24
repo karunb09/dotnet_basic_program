@@ -12,12 +12,12 @@ namespace assn1
             string name, x;
             decimal cost = 7.85M;
             double amount = 0;
+            Console.WriteLine("Enter your name: ");
+            name = Console.ReadLine();
 
-            do
-            {
-                Console.WriteLine("Enter your name: ");
-                name = Console.ReadLine();
-            } while (name == "");
+             while (name == ""){
+                 Console.WriteLine("Sorry, Please Enter you name ?");
+             }
 
             do
             {
@@ -29,25 +29,35 @@ namespace assn1
             {
                 check = int.Parse(x);
 
-                if (check >= 18)
+                if (check >= 15 && check <=90)
                 {
                     age = true;
+                }
+                else if(check > 90){
+                    Console.WriteLine("You are too old to watch a movie");
+                    age = false;
                 }
                 else
                 {
                     age = false;
-                    Console.WriteLine($"Sorry! {name} you have to be above 18+ to buy movie ticket.");
+                    Console.WriteLine("Your Age is below 15, you need a guardian to book a ticket.");
+                    Console.WriteLine($"Sorry! {name} you have to be above 15+ to buy movie ticket.");
                 }
-
+                int selection;
+                String[] movies_tiers = { "Standard", "Imax", "Imax-3D" };
                 while (age)
                 {
-                    String[] movies_tiers = { "Standard", "Imax", "Imax-3D" };
+                    do{
+                    
                     for (int i = 0; i < movies_tiers.Length; i++)
                     {
                         Console.WriteLine($"{i + 1}. {movies_tiers[i]}");
                     }
-                    int selection = Convert.ToInt32(Console.ReadLine());
-
+                    selection = Convert.ToInt32(Console.ReadLine());
+                    if(selection > 3){
+                        Console.WriteLine("Wrong option selected !!");
+                    }
+                    }while(selection  > 3);
                     switch (selection)
                     {
                         case 1:
@@ -58,9 +68,14 @@ namespace assn1
                             break;
                         case 3:
                             Console.WriteLine("you have selected {0} type.", movies_tiers[2]);
-                            break;
-                        default:
-                            Console.WriteLine("No option selected, standard ticket is selected as deafult !!");
+                            Console.WriteLine("Do you have 3D glasses ?");
+                            char glasses_check = char.Parse(Console.ReadLine());
+                            if(glasses_check == 'y'){
+                                Console.WriteLine("Great !!");
+                            }
+                            else{
+                                Console.WriteLine("Extra 2$ for each ticket will be added");
+                            }
                             break;
                     }
                     Console.WriteLine("Enter number of tickets");
@@ -96,7 +111,7 @@ namespace assn1
                 Console.WriteLine("Do you want to continue again (y/n)?");
                 a = char.Parse(Console.ReadLine());
             } while (a.Equals('y') || a.Equals('Y'));
-            Console.WriteLine("{0}Total Number of Tickets are {1} and total cost is {2}.\nThank You! and have a nice day.", name, count, amount);
+            Console.WriteLine("{0}, Total Number of Tickets are {1} and total cost is {2}.\nThank You! and have a nice day.", name, count, amount);
         }
     }
 }
