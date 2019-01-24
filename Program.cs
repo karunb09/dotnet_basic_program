@@ -20,8 +20,6 @@ namespace assn1
                 Console.WriteLine("Sorry, Please Enter you name ?");
                 name = Console.ReadLine();
             }
-
-
             do
             {
                 do
@@ -73,18 +71,27 @@ namespace assn1
                             break;
                         case 3:
                             Console.WriteLine("you have selected {0} type.", movies_tiers[2]);
-                            Console.WriteLine("Do you have 3D glasses ?");
-                            char glasses_check = char.Parse(Console.ReadLine());
-                            if (glasses_check == 'y')
+                            char glasses_check;
+                            do
                             {
-                                Console.WriteLine("Great !!");
-                                selection = 2;
-                            }
-                            else if(glasses_check == 'n')
-                            {
-                                Console.WriteLine("Extra 2$ for each ticket will be added");
-                            }
-                            
+                                Console.WriteLine("Do you have 3D glasses (y/n)?");
+                                glasses_check = char.Parse(Console.ReadLine());
+                                if (glasses_check == 'y')
+                                {
+                                    Console.WriteLine("Great !!");
+                                    selection = 2;
+                                    break;
+                                }
+                                else if (glasses_check == 'n')
+                                {
+                                    Console.WriteLine("Extra 2$ for each ticket will be added");
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("please type y or n !!");
+                                }
+                            } while (glasses_check != 'y' || glasses_check != 'n');
                             break;
                     }
                     Console.WriteLine("Enter number of tickets");
@@ -116,18 +123,18 @@ namespace assn1
                         switch (num)
                         {
                             case 1:
-                                cost = cost + (num * 2);
-                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
+                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)+2}");
+                                amount += 2;
                                 count += 1;
                                 break;
                             case 2:
-                                cost = cost + (num * 2);
-                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
+                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)+4}");
+                                amount += 4;
                                 count += 2;
                                 break;
                             case 3:
-                                cost = cost + (num * 2);
-                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
+                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)+6}");
+                                amount += 6;
                                 count += 3;
                                 break;
                             default:
