@@ -15,25 +15,29 @@ namespace assn1
             Console.WriteLine("Enter your name: ");
             name = Console.ReadLine();
 
-             while (name == ""){
-                 Console.WriteLine("Sorry, Please Enter you name ?");
-             }
+            while (name == "")
+            {
+                Console.WriteLine("Sorry, Please Enter you name ?");
+                name = Console.ReadLine();
+            }
+
 
             do
             {
-                Console.WriteLine("Enter your age ?");
-                //String x = int.Parse(Console.ReadLine());
-                x = Console.ReadLine();
-            } while (x == "");
-            do
-            {
+                do
+                {
+                    Console.WriteLine("Enter your age(>=15, <= 90) ?");
+                    //String x = int.Parse(Console.ReadLine());
+                    x = Console.ReadLine();
+                } while (x == "");
                 check = int.Parse(x);
 
-                if (check >= 15 && check <=90)
+                if (check >= 15 && check <= 90)
                 {
                     age = true;
                 }
-                else if(check > 90){
+                else if (check > 90)
+                {
                     Console.WriteLine("You are too old to watch a movie");
                     age = false;
                 }
@@ -47,17 +51,18 @@ namespace assn1
                 String[] movies_tiers = { "Standard", "Imax", "Imax-3D" };
                 while (age)
                 {
-                    do{
-                    
-                    for (int i = 0; i < movies_tiers.Length; i++)
+                    do
                     {
-                        Console.WriteLine($"{i + 1}. {movies_tiers[i]}");
-                    }
-                    selection = Convert.ToInt32(Console.ReadLine());
-                    if(selection > 3){
-                        Console.WriteLine("Wrong option selected !!");
-                    }
-                    }while(selection  > 3);
+                        for (int i = 0; i < movies_tiers.Length; i++)
+                        {
+                            Console.WriteLine($"{i + 1}. {movies_tiers[i]}");
+                        }
+                        selection = Convert.ToInt32(Console.ReadLine());
+                        if (selection > 3)
+                        {
+                            Console.WriteLine("Wrong option selected !!");
+                        }
+                    } while (selection > 3);
                     switch (selection)
                     {
                         case 1:
@@ -70,33 +75,67 @@ namespace assn1
                             Console.WriteLine("you have selected {0} type.", movies_tiers[2]);
                             Console.WriteLine("Do you have 3D glasses ?");
                             char glasses_check = char.Parse(Console.ReadLine());
-                            if(glasses_check == 'y'){
+                            if (glasses_check == 'y')
+                            {
                                 Console.WriteLine("Great !!");
+                                selection = 2;
                             }
-                            else{
+                            else if(glasses_check == 'n')
+                            {
                                 Console.WriteLine("Extra 2$ for each ticket will be added");
                             }
+                            
                             break;
                     }
                     Console.WriteLine("Enter number of tickets");
                     int num = int.Parse(Console.ReadLine());
-                    switch (num)
+                    if (selection == 1 || selection == 2)
                     {
-                        case 1:
-                            Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
-                            count += 1;
-                            break;
-                        case 2:
-                            Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
-                            count += 2;
-                            break;
-                        case 3:
-                            Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
-                            count += 3;
-                            break;
-                        default:
-                            Console.WriteLine($"{name} you can only buy 1 or 2 or 3 tickets per Transaction.\nsorry !!");
-                            break;
+                        switch (num)
+                        {
+                            case 1:
+                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
+                                count += 1;
+                                break;
+                            case 2:
+                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
+                                count += 2;
+                                break;
+                            case 3:
+                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
+                                count += 3;
+                                break;
+                            default:
+                                Console.WriteLine($"{name} you can only buy 1 or 2 or 3 tickets per Transaction.\nsorry !!");
+                                break;
+
+                        }
+                    }
+                    else
+                    {
+                        switch (num)
+                        {
+                            case 1:
+                                cost = cost + (num * 2);
+                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
+                                count += 1;
+                                break;
+                            case 2:
+                                cost = cost + (num * 2);
+                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
+                                count += 2;
+                                break;
+                            case 3:
+                                cost = cost + (num * 2);
+                                Console.WriteLine($"The Total cost of ticket(s) is {calculate(num, cost)}");
+                                count += 3;
+                                break;
+                            default:
+                                Console.WriteLine($"{name} you can only buy 1 or 2 or 3 tickets per Transaction.\nsorry !!");
+                                break;
+
+                        }
+
                     }
                     age = false;
                 }
