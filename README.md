@@ -14,6 +14,3 @@ Here, in this application we use a default movie_rate for booking a ticket.
 ## ScreenShot of the application:
 
 ![output](https://github.com/karunb09/dotnet_basic_program/blob/master/Screenshot%20(105).png)
-
-
-
